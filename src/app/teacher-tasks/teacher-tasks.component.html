@@ -1,0 +1,46 @@
+<div class="main-actions">
+  <button
+    mat-raised-button
+    color="primary"
+    class="main-btn"
+    (click)="openModal()"
+  >
+    Create Task
+  </button>
+</div>
+<div class="tasks">
+  <div *ngFor="let task of tasks">
+    <mat-card class="item">
+      <div class="left">
+        <mat-icon class="main">list_alt</mat-icon>
+        <div class="info">
+          <h3 class="name">{{ task.name }}</h3>
+          <p class="text">Deadline: {{ task.deadlineDisplay }}</p>
+          <p class="text">Max Mark: {{ task.maxMark }}</p>
+        </div>
+      </div>
+
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item color="primary" (click)="openTask(task._id)">
+          <mat-icon>launch</mat-icon>
+          <span>Open</span>
+        </button>
+        <button mat-menu-item (click)="editTask(task._id)">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button mat-menu-item color="warn" (click)="deleteTask(task._id)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </mat-menu>
+    </mat-card>
+  </div>
+</div>

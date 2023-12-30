@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="body">
+  <h3 *ngIf="teacher">Code: {{ code }}</h3>
+  <mat-tab-group *ngIf="currentCourse" [selectedIndex]="index">
+    <ng-container *ngFor="let tab of currentCourse.tabs">
+      <mat-tab *ngIf="teacher || tab.label !== 'Marks'" [label]="tab.label">
+        <ng-container *ngIf="teacher; else alternateContent">
+          <ng-container *ngComponentOutlet="tab.component"></ng-container>
+        </ng-container>
+        <ng-template #alternateContent>
+          <ng-container
+            *ngComponentOutlet="tab.studentComponent"
+          ></ng-container>
+        </ng-template>
+      </mat-tab>
+    </ng-container>
+  </mat-tab-group>
+</div>

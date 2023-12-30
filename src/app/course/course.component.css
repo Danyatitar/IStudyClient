@@ -1,0 +1,7 @@
+.body {
+  display: block;
+  margin: auto;
+  max-width: 1500px;
+  gap: 20px;
+  padding: 40px;
+}

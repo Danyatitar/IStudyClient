@@ -1,0 +1,22 @@
+<div class="tasks">
+  <div *ngFor="let task of tasks">
+    <mat-card class="item">
+      <div class="left">
+        <mat-icon class="main" [ngClass]="{ 'done': task.work }">list_alt</mat-icon>
+        <div class="info">
+          <h3 class="name">{{ task.name }}</h3>
+          <p class="text">Deadline: {{ task.deadlineDisplay }}</p>
+          <p class="text">Max Mark: {{ task.maxMark }}</p>
+        </div>
+      </div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn"
+        (click)="openTask(task._id)"
+      >
+        Open
+      </button>
+    </mat-card>
+  </div>
+</div>

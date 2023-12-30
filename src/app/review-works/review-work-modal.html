@@ -1,0 +1,55 @@
+<h1 mat-dialog-title class="modal-title">Student: {{student?.name}}</h1>
+<div mat-dialog-content>
+  <div class="body">
+    <div class="work-info">
+      <div *ngIf="description" class="modal-description">
+        <h3>Description</h3>
+        <p>{{description}}</p>
+      </div>
+
+      <div *ngIf="existingFile">
+        <h3>File: <strong>{{ existingFile.filename}}</strong></h3>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="download-btn"
+          (click)="download()"
+        >
+          Download
+        </button>
+      </div>
+    </div>
+    <div [formGroup]="form" class="input">
+      <mat-form-field appearance="outline">
+        <mat-label>Mark</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Mark"
+          formControlName="mark"
+        />
+        <mat-error *ngIf="form.get('mark')?.hasError('required')"
+          >Mark is required</mat-error
+        >
+        <mat-error *ngIf="form.get('mark')?.hasError('max')"
+          >Mark must be less than {{maxMark}}</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-button color="primary" class="action-btn" (click)="onNoClick()">
+    Cancel
+  </button>
+  <button
+    mat-button
+    color="primary"
+    class="action-btn"
+    (click)="mark()"
+    cdkFocusInitial
+  >
+    Mark
+  </button>
+</div>

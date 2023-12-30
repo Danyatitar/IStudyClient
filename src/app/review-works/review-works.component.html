@@ -1,0 +1,55 @@
+<div class="main-actions">
+  <button mat-raised-button color="warn" class="main-btn" (click)="closeTab()">
+    Close This Tab
+  </button>
+</div>
+
+<div class="container">
+  <div class="left">
+    <div class="header">
+      <h2 class="title">{{ task?.name }}</h2>
+      <p class="text">Max Points: {{ task?.maxMark }}</p>
+      <p class="text">Deadline: {{ task?.deadlineDisplay }}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <p class="description">{{ task?.description }}</p>
+    <div *ngIf="task?.fileId?.filename" class="">
+      <h3>Files</h3>
+      <p>{{ task?.fileId?.filename }}</p>
+      <button
+        mat-raised-button
+        color="primary"
+        class="download-btn"
+        (click)="download()"
+      >
+        Download
+      </button>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <mat-radio-group class="radio" [(ngModel)]="currentStatus" aria-label="Select an option">
+    @for (value of values; track value) {
+    <mat-radio-button
+      color="primary"
+      [value]="value.value"
+      (click)="display(value.value)"
+      >{{ value.label }}</mat-radio-button
+    >
+    }
+  </mat-radio-group>
+  <div *ngFor="let work of currentWorks">
+    <mat-card class="work">
+      <h3 class="name">Student: {{ work?.studentId?.name }}</h3>
+      <!-- <p class="text">Max Mark: {{ task?.maxMark }}</p> -->
+      <button
+        mat-raised-button
+        color="primary"
+        class="review-btn"
+        (click)="openModal(work?._id)"
+      >
+        Review
+      </button>
+    </mat-card>
+  </div>
+</div>

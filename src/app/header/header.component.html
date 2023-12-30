@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-content class="header">
+    <div class="left">
+      <app-burger-menu></app-burger-menu>
+      <h1>IStudy</h1>
+    </div>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+      Profile {{ userName }}
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="changeName()">Change name</button>
+      <button (click)="logOut()" mat-menu-item>Log Out</button>
+    </mat-menu>
+  </mat-card-content>
+</mat-card>

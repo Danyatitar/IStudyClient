@@ -1,0 +1,74 @@
+.body {
+  display: block;
+  margin: auto;
+  max-width: 1500px;
+  gap: 20px;
+  padding: 40px;
+}
+.main-actions {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.main-btn {
+  width: 250px;
+  height: 60px;
+  font-size: 24px;
+}
+.title {
+  font-size: 40px;
+}
+.courses {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.course {
+  width: 350px;
+}
+.header {
+  background-color: #3f51b5;
+}
+.name {
+  margin-top: 10px;
+  margin-left: 15px;
+  font-weight: bold;
+  font-size: 32px;
+  color: #fff;
+}
+.teacher {
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-bottom: 30px;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 20px;
+  color: #fff;
+}
+.content {
+  min-height: 80px;
+}
+.actions {
+  border-top: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 30px 0;
+}
+.btn {
+  font-size: 18px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.center {
+  justify-content: center;
+}
+.input {
+  padding-top: 10px;
+  padding-bottom: 0;
+}

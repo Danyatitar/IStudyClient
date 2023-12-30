@@ -1,0 +1,82 @@
+.main-actions {
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+}
+.main-btn {
+  width: 160px;
+  height: 50px;
+  font-size: 18px;
+}
+
+.header {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 20px;
+}
+.left {
+  width: 100%;
+}
+.title {
+  color: #3f51b5;
+  font-size: 28px;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.text {
+  font-style: italic;
+  color: gray;
+  margin: 0;
+  font-size: 20px;
+}
+.container {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+.description {
+  padding: 20px 0;
+  font-size: 18px;
+}
+.download-btn {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.textarea {
+  margin-top: 20px;
+  width: 100%;
+}
+.textarea-input {
+  height: 100px;
+}
+.actions {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.btn {
+  font-size: 18px;
+}
+.form-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mark {
+  font-size: 24px;
+  color: limegreen;
+  font-weight: 500;
+}
+.deadline {
+  font-size: 22px;
+  color: red;
+  font-weight: 500;
+}

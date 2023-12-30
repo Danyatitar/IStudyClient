@@ -1,0 +1,94 @@
+<app-header></app-header>
+<div class="body">
+  <div class="main-actions">
+    <button
+      mat-raised-button
+      color="primary"
+      class="main-btn"
+      (click)="joinCourse()"
+    >
+      Join Course
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="main-btn"
+      (click)="createCourse()"
+    >
+      Create Course
+    </button>
+  </div>
+  <h2 *ngIf="hasTeacherCourses" class="title">Teacher Courses</h2>
+  <div class="courses">
+    <div *ngFor="let course of teacherCourses">
+      <mat-card class="course">
+        <mat-card-header class="header">
+          <mat-card-title class="name">{{ course.name }}</mat-card-title>
+          <mat-card-subtitle class="teacher"
+            >Teacher: {{ course.teacher.name }}</mat-card-subtitle
+          >
+        </mat-card-header>
+        <mat-card-content class="content"> </mat-card-content>
+        <mat-card-actions class="actions">
+          <button
+            mat-raised-button
+            color="warn"
+            class="btn"
+            (click)="deleteCourse(course._id)"
+          >
+            Delete
+          </button>
+          <button
+            mat-raised-button
+            color="basic"
+            class="btn"
+            (click)="changeName(course._id)"
+          >
+            Edit
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn"
+            (click)="open(course._id)"
+          >
+            Open
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <h2 *ngIf="hasStudentCourses" class="title">Student Courses</h2>
+  <div class="courses">
+    <div *ngFor="let course of studentCourses">
+      <mat-card class="course">
+        <mat-card-header class="header">
+          <mat-card-title class="name">{{ course.name }}</mat-card-title>
+          <mat-card-subtitle class="teacher"
+            >Teacher: {{ course.teacher.name }}</mat-card-subtitle
+          >
+        </mat-card-header>
+        <mat-card-content class="content"> </mat-card-content>
+        <mat-card-actions class="actions">
+          <button
+            mat-raised-button
+            color="warn"
+            class="btn"
+            (click)="unsubscribeFromCourse(course._id)"
+          >
+            UnSubscribe
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn"
+            (click)="open(course._id)"
+          >
+            Open
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

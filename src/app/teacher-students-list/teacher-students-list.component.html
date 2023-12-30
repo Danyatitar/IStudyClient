@@ -1,0 +1,67 @@
+<div *ngIf="selection.selected.length" class="main-actions">
+  <button
+    mat-raised-button
+    color="warn"
+    class="main-btn"
+    (click)="deleteSelected()"
+  >
+    Delete Selected
+  </button>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef class="mat-column-select">
+      <mat-checkbox
+        color="primary"
+        (change)="$event ? toggleAllRows() : null"
+        [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()"
+        [aria-label]="checkboxLabel()"
+      ></mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row" class="mat-column-select">
+      <mat-checkbox
+        color="primary"
+        (click)="$event.stopPropagation()"
+        (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)"
+        [aria-label]="checkboxLabel(row)"
+      ></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef class="mat-column-position title">
+      No.
+    </th>
+    <td mat-cell *matCellDef="let element" class="mat-column-position">
+      {{ element.position }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef class="mat-column-name title">
+      Name
+    </th>
+    <td mat-cell *matCellDef="let element" class="mat-column-name">
+      {{ element.name }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef class="mat-column-email title">
+      Email
+    </th>
+    <td mat-cell *matCellDef="let element" class="mat-column-email">
+      {{ element.email }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    (click)="selection.toggle(row)"
+  ></tr>
+</table>

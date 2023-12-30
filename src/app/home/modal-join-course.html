@@ -1,0 +1,20 @@
+<h1 mat-dialog-title class="center">Enter Course Code</h1>
+<div mat-dialog-content class="center input">
+  <mat-form-field appearance="outline">
+    <mat-label>Code</mat-label>
+    <input
+      matInput
+      [(ngModel)]="data.code"
+      required
+      name="code"
+      #codeInput="ngModel"
+    />
+    <mat-error *ngIf="hasError">{{error}} </mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="center">
+  <button mat-button color="primary" (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" (click)="save()" cdkFocusInitial>
+    Save
+  </button>
+</div>

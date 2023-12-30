@@ -1,0 +1,133 @@
+<div class="main-actions">
+  <button mat-raised-button color="warn" class="main-btn" (click)="closeTab()">
+    Close This Tab
+  </button>
+</div>
+
+<div class="container">
+  <div class="left">
+    <div class="header">
+      <h2 class="title">{{ task?.name }}</h2>
+      <div class="info">
+        <p class="text">Max Points: {{ task?.maxMark }}</p>
+        <p class="text">Deadline: {{ task?.deadlineDisplay }}</p>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <p class="description">{{ task?.description }}</p>
+    <div *ngIf="task?.fileId?.filename" class="">
+      <h3>Files</h3>
+      <p>{{ task?.fileId?.filename }}</p>
+      <button
+        mat-raised-button
+        color="primary"
+        class="download-btn"
+        (click)="download()"
+      >
+        Download
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+  </div>
+  <div>
+    <mat-card class="form">
+      <mat-card-content>
+        <div class="form-title">
+          <h2>Send Work</h2>
+          <p *ngIf="mark" class="mark">Mark {{ mark }}/{{ task?.maxMark }}</p>
+          <p *ngIf="missDeadline" class="deadline">Missed Deadline</p>
+        </div>
+
+        <mat-checkbox
+          color="primary"
+          [(ngModel)]="publicate"
+          disabled="{{ disabled }}"
+          >I want publicate my work after deadline</mat-checkbox
+        >
+        <mat-form-field class="textarea" appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea
+            class="textarea-input"
+            matInput
+            placeholder="Description"
+            [(ngModel)]="myDescription"
+          ></textarea>
+        </mat-form-field>
+        <div class="" *ngIf="!myFile">
+          <button mat-raised-button color="primary" (click)="fileInput.click()">
+            Upload file
+          </button>
+          <input
+            type="file"
+            id="fileInput"
+            #fileInput
+            (change)="handleFileInput(fileInput)"
+            style="display: none"
+          />
+          <span>{{ selectedFile?.name || "No file chosen" }}</span>
+        </div>
+
+        <div class="" *ngIf="myFile && filename">
+          <p>
+            Your downloaded file:
+            <strong>{{ filename }}</strong>
+          </p>
+          <button
+            mat-raised-button
+            color="primary"
+            class="download-btn"
+            (click)="downloadMyFile()"
+          >
+            Download
+          </button>
+        </div>
+        <div class="" *ngIf="!updateDisabled">
+          <button mat-raised-button color="primary" (click)="fileInput.click()">
+            New file
+          </button>
+          <input
+            type="file"
+            id="fileInput"
+            #fileInput
+            (change)="handleFileUpdate(fileInput)"
+            style="display: none"
+          />
+          <span>{{ updatedFile?.name || "No file chosen" }}</span>
+        </div>
+
+        <div class="actions">
+          <button
+            *ngIf="updateDisabled"
+            mat-raised-button
+            color="primary"
+            class="btn"
+            (click)="sendWork()"
+            disabled="{{ sendDisabled }}"
+          >
+            Send
+          </button>
+          <button
+            *ngIf="!updateDisabled"
+            mat-raised-button
+            color="primary"
+            class="btn"
+            (click)="updateWork()"
+            disabled="{{ updateDisabled }}"
+          >
+            Send
+          </button>
+          <button
+            mat-raised-button
+            color="basic"
+            class="btn"
+            disabled="{{ cancelDisabled }}"
+            (click)="cancel()"
+          >
+            Cancel Sending
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.mat-column-select,
+.mat-column-position,
+.mat-column-name,
+.mat-column-email {
+  width: 10%;
+  text-align: left;
+  font-size: 18px;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.mat-column-position {
+  width: 30%;
+  font-size: 18px;
+}
+
+.mat-column-name,
+.mat-column-email {
+  width: 30%;
+  font-size: 18px;
+}
+.main-actions {
+  display: flex;
+  justify-content: end;
+  margin-top: 50px;
+}
+.main-btn {
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+}

@@ -1,0 +1,150 @@
+<h1 *ngIf="editModal" mat-dialog-title class="title">Edit Task</h1>
+<h1 *ngIf="!editModal" mat-dialog-title class="title">Create Task</h1>
+<div mat-dialog-content>
+  <form [formGroup]="modalForm" class="body">
+    <div class="column inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Name" />
+        <mat-error *ngIf="modalForm?.get('name')?.hasError('required')"
+          >Name is required</mat-error
+        >
+        <mat-error *ngIf="modalForm?.get('name')?.hasError('minlength')"
+          >Name must be at least 4 characters long</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Deadline date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="deadlineDate"
+          [min]="minDate"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="modalForm.get('deadlineDate')?.hasError('required')"
+          >Deadline time is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Deadline time</mat-label>
+        <input
+          matInput
+          type="time"
+          formControlName="deadlineTime"
+          format="HH:MM"
+        />
+        <mat-error *ngIf="modalForm.get('deadlineTime')?.hasError('required')"
+          >Deadline time is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Max Mark</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Max Mark"
+          formControlName="maxMark"
+        />
+        <mat-error *ngIf="modalForm.get('maxMark')?.hasError('required')"
+          >Max Mark is required</mat-error
+        >
+        <mat-error *ngIf="modalForm.get('maxMark')?.hasError('min')"
+          >Max Mark must be greater than 0</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="column other">
+      <mat-checkbox formControlName="allowPublication" color="primary"
+        >Allow Publication</mat-checkbox
+      >
+
+      <div *ngIf="editModal && data.fileId" class="">
+        <p>Your downloaded file is: <strong>{{existingFileName}}</strong></p>
+        <button mat-raised-button color="primary" (click)="download()">
+          Download
+        </button>
+      </div>
+      <div *ngIf="editModal && data.fileId">
+        <label for="fileInput">If you want to change file click: </label>
+        <button (click)="fileInput.click()">Change file</button>
+        <input
+          type="file"
+          id="fileInput"
+          #fileInput
+          (change)="handleFileInput(fileInput)"
+          style="display: none"
+        />
+        <span>{{ selectedFile?.name || 'No file chosen' }}</span>
+      </div>
+
+      <div *ngIf="editModal && !data.fileId">
+        <label for="fileInput">If you want to add file click: </label>
+        <button mat-raised-button color="primary" (click)="fileInput.click()">
+          Choose file
+        </button>
+        <input
+          type="file"
+          id="fileInput"
+          #fileInput
+          (change)="handleFileInput(fileInput)"
+          style="display: none"
+        />
+        <span>{{ selectedFile?.name || 'No file chosen' }}</span>
+      </div>
+
+      <div *ngIf="!editModal">
+        <button mat-raised-button color="primary" (click)="fileInput.click()">
+          Choose file
+        </button>
+        <input
+          type="file"
+          id="fileInput"
+          #fileInput
+          (change)="handleFileInput(fileInput)"
+          style="display: none"
+        />
+        <span>{{ selectedFile?.name || 'No file chosen' }}</span>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea
+          class="textarea"
+          matInput
+          placeholder="Description"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-button color="primary" (click)="onNoClick()">Cancel</button>
+  <button
+    *ngIf="!editModal"
+    mat-button
+    color="primary"
+    (click)="submitForm()"
+    cdkFocusInitial
+  >
+    Create
+  </button>
+  <button
+    *ngIf="editModal"
+    mat-button
+    color="primary"
+    (click)="updateTask()"
+    cdkFocusInitial
+  >
+    Save
+  </button>
+</div>

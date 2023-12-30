@@ -1,0 +1,88 @@
+<div class="main-actions">
+  <button mat-raised-button color="warn" class="main-btn" (click)="closeTab()">
+    Close This Tab
+  </button>
+</div>
+<div *ngFor="let work of publications" class="list">
+  <mat-card class="work">
+    <div class="header">
+      <div class="info">
+        <h3 class="title">{{ work.taskId.name }}</h3>
+        <p class="text">
+          AVG Mark: {{ work.avgMark }} out of {{ work.taskId.maxMark }}
+        </p>
+      </div>
+      <div class="btns">
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn"
+          [class.red]="work.show"
+          (click)="openComments(work._id)"
+        >
+          {{ work.content }}
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn"
+          (click)="mark(work._id)"
+        >
+          View and Mark
+        </button>
+      </div>
+    </div>
+
+    <mat-card-content *ngIf="work.show">
+      <div class="header">
+        <h3 class="comment-title">Comments</h3>
+        <button
+          mat-raised-button
+          color="primary"
+          class="comment-btn"
+          (click)="addComment(work._id)"
+        >
+          Add Comment
+        </button>
+      </div>
+
+      <div *ngFor="let comment of work.comments" class="list">
+        <mat-card>
+          <mat-card-content class="comment-content">
+            <div class="comment-info">
+              <h4>{{ comment.studentId.name }}</h4>
+              <p>{{ comment.text }}</p>
+            </div>
+
+            <div *ngIf="comment?.my" class="menu">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button
+                  mat-menu-item
+                  (click)="editComment(comment._id, work._id)"
+                >
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button
+                  mat-menu-item
+                  color="warn"
+                  (click)="deleteComment(comment._id, work._id)"
+                >
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
